@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YSL x Spotify | The Scent of Your Sound</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #000; color: #fff; }
+        h1, h2, h3, .serif-font { font-family: 'Playfair Display', serif; }
+        .ysl-gold { color: #D4AF37; }
+        .spotify-green { color: #1DB954; }
+        
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s;
+        }
+        
+        .loader {
+            border-top-color: #1DB954;
+            -webkit-animation: spinner 1.5s linear infinite;
+            animation: spinner 1.5s linear infinite;
+        }
+        @keyframes spinner {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .hidden-section { display: none; opacity: 0; transition: opacity 1s ease-in-out; }
+        .fade-in { opacity: 1; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="flex justify-between items-center px-6 py-8 max-w-7xl mx-auto">
+        <div class="w-16 md:w-20"> 
+            <img src="logo.png" alt="YSL Logo" class="w-full h-auto object-contain"> 
+        </div>
+        
+        <div class="text-xl text-gray-600 px-4 font-thin">✕</div>
+
+        <div class="flex items-center gap-3">
+            <i class="fab fa-spotify text-5xl md:text-6xl spotify-green"></i>
+            <span class="font-bold text-3xl md:text-4xl tracking-tight hidden md:block">Spotify</span>
+        </div>
+    </nav>
+
+    <header class="text-center py-12 px-4 relative">
+        <div class="max-w-3xl mx-auto space-y-6">
+            <p class="text-sm uppercase tracking-[0.3em] text-ysl-gold">MENA Region Exclusive</p>
+            <h1 class="text-5xl md:text-7xl font-medium leading-tight">
+                The Scent of <br> <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Your Sound</span>
+            </h1>
+            <p class="text-gray-300 text-lg font-light max-w-xl mx-auto mt-4">
+                Let our AI analyze your Spotify vibe to find your signature YSL fragrance.
+            </p>
+
+            <div class="mt-12 bg-gray-900 border border-gray-700 p-2 rounded-full flex items-center max-w-xl mx-auto shadow-2xl shadow-green-900/20">
+                <div class="pl-4 text-gray-500"><i class="fab fa-spotify text-xl"></i></div>
+                <input type="text" id="spotifyInput" placeholder="Paste Spotify Playlist Link..." 
+                    class="bg-transparent border-none w-full text-white px-4 py-3 focus:outline-none placeholder-gray-500">
+                <button onclick="generateCampaign()" 
+                    class="bg-white text-black hover:bg-spotify-green hover:text-white transition-all duration-300 font-bold rounded-full px-8 py-3 uppercase text-sm tracking-wider">
+                    Analyze
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="loadingSection" class="hidden-section text-center py-20">
+        <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4 mx-auto"></div>
+        <h3 class="text-xl serif-font text-ysl-gold">Analyzing Soundscape...</h3>
+        <p class="text-sm text-gray-400 mt-2" id="loadingText">Connecting to Spotify API...</p>
+    </div>
+
+    <div id="videoSection" class="hidden-section max-w-5xl mx-auto px-4 pb-20">
+        <div class="border border-ysl-gold/50 p-1 relative">
+            <div class="aspect-video bg-gray-800 relative overflow-hidden">
+                <video id="campaignVideo" class="w-full h-full object-cover" controls>
+                    <source src="video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="text-center mt-8">
+                <h2 class="text-3xl serif-font mb-2">Your Match: <span class="ysl-gold">LIBRE</span></h2>
+                <p class="text-gray-400">"Bold. Free. The scent of a woman who lives by her own rules."</p>
+                <a href="#" class="inline-block mt-6 bg-white text-black px-10 py-3 hover:bg-ysl-gold hover:text-white transition uppercase text-sm tracking-widest font-bold">Shop The Scent</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-20 bg-zinc-900/50 mt-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-2xl md:text-3xl serif-font text-center mb-12 tracking-wide">DISCOVER THE COLLECTION</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="group cursor-pointer">
+                    <div class="aspect-[3/4] bg-white overflow-hidden relative">
+                        <img src="1.jpg" alt="Product 1" class="product-img opacity-90 group-hover:scale-105">
+                    </div>
+                    <div class="mt-4 text-center">
+                        <h3 class="text-lg serif-font">Libre</h3>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="aspect-[3/4] bg-white overflow-hidden relative">
+                        <img src="2.jpg" alt="Product 2" class="product-img opacity-90 group-hover:scale-105">
+                    </div>
+                    <div class="mt-4 text-center">
+                        <h3 class="text-lg serif-font">Mon Paris</h3>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="aspect-[3/4] bg-white overflow-hidden relative">
+                        <img src="3.jpg" alt="Product 3" class="product-img opacity-90 group-hover:scale-105">
+                    </div>
+                    <div class="mt-4 text-center">
+                        <h3 class="text-lg serif-font">Black Opium</h3>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="aspect-[3/4] bg-white overflow-hidden relative">
+                        <img src="4.jpg" alt="Product 4" class="product-img opacity-90 group-hover:scale-105">
+                    </div>
+                    <div class="mt-4 text-center">
+                        <h3 class="text-lg serif-font">Y Men</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-gray-800 py-10 text-center text-gray-600 text-xs">
+        <p>© 2024 YSL BEAUTY MENA. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function generateCampaign() {
+            const input = document.getElementById('spotifyInput').value;
+            const loader = document.getElementById('loadingSection');
+            const videoArea = document.getElementById('videoSection');
+            const loadingText = document.getElementById('loadingText');
+            const videoPlayer = document.getElementById('campaignVideo');
+
+            if(input.length < 1) {
+                alert("Please paste a link first!");
+                return;
+            }
+
+            videoArea.style.display = 'none';
+            loader.style.display = 'block';
+            loader.classList.add('fade-in');
+
+            setTimeout(() => { loadingText.innerText = "Analyzing Tempo & Mood..." }, 1000);
+            setTimeout(() => { loadingText.innerText = "Matching Olfactory Notes..." }, 2000);
+
+            setTimeout(() => {
+                loader.style.display = 'none';
+                videoArea.style.display = 'block';
+                setTimeout(() => {
+                    videoArea.classList.add('fade-in');
+                    videoPlayer.play();
+                }, 50);
+                videoArea.scrollIntoView({ behavior: 'smooth' });
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
